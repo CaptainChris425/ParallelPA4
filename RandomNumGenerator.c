@@ -9,23 +9,24 @@
 
 
 int main(int argc, char *argv[]){
-	if (argc < 4){
-		printf("Useage a.out a b P\n");
-		return 0;
-	}
-	int A = atoi(argv[1]);
-	int B = atoi(argv[2]);
-	int P = atoi(argv[3]);
+//	if (argc < 4){
+//		printf("Useage a.out a b P\n");
+//		return 0;
+//	}
+//	int A = atoi(argv[1]);
+//	int B = atoi(argv[2]);
+//	int P = atoi(argv[3]);
 	int rank,p;
 	int n = 10;
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &p);
-	assert(p>=2);
-	assert((n/p)%2 == 0);
+//	assert(p>=2);
+//	assert((n/p)%2 == 0);
 
 	int A[10] = {1,2,3,4,5,6,7,8,9,10};
 	int B[10];
+	int i;
 	if (rank == 4){
 		for(i = 0; i< n; i++){
 			printf("%d \n", i);
@@ -86,7 +87,7 @@ int main(int argc, char *argv[]){
 //	printf("My rank is %d and my recvglobal is %d",rank,recievedglobal);
 	MPI_Barrier(MPI_COMM_WORLD);
 	global = recievedglobal;
-	for(i=0;i<n/p;i++){
+	for(i=0;i<n;i++){
 		A[i] = A[i] + global;
 	}
 /*
@@ -102,16 +103,14 @@ int main(int argc, char *argv[]){
 
 //
 	if(rank == 1){
-		printf("My rank is %d\n", rank);
-		for (i=0; i< (n/p); i++){
-			printf("A[%d] = %d\n", i, A[i]);
+		for (i=0; i< n; i++){
+			printf("Rank[%d] -> A[%d] = %d\n",rank, i, A[i]);
 		}
 		printf("The global value we got was %d",local);
 	}
 	if(rank == 0){
-		printf("My rank is %d\n", rank);
-		for (i=0; i< (n/p); i++){
-			printf("A[%d] = %d\n", i, A[i]);
+		for (i=0; i< n; i++){
+			printf("Rank[%d] -> A[%d] = %d\n",rank, i, A[i]);
 		}
 		printf("The global value we got was %d",local);
 	}
