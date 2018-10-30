@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
 		Mmatrix[i] = (int **)malloc(sizeof(int *)*2);
 		temp[i] = (int **)malloc(sizeof(int *)*2);
 	}
-	for (i=0; i < (n/p); i++)
+	for (i=0; i < (n/p); i++){
 		Mmatrix[i][0] = (int*)malloc(sizeof(int)*2);
 		Mmatrix[i][1] = (int*)malloc(sizeof(int)*2);
 		temp[i][0] = (int*)malloc(sizeof(int)*2);
@@ -103,7 +103,7 @@ int main(int argc, char *argv[]){
 		printf("| %d | %d |\n", Mmatrix[i][1][0], Mmatrix[i][1][1]);
 		}
 	}
-	
+/*	
 	//Start P-value parallel prefix
 	int** local = Mmatrix[n/p-1];
 	int** global = local;	
@@ -153,7 +153,7 @@ int main(int argc, char *argv[]){
  
 
 
-
+*/
 
 /*
 	int recievedglobal;
