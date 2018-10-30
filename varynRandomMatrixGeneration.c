@@ -30,11 +30,12 @@ int main( int argc, char *argv[]){
 	int P = atoi(argv[3]);
 	int X_0 = atoi(argv[4]);
 	int rank,p;
-	int n = 32;
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &p);
 	assert(p>=2);
+int n;
+for(n = 4 ; n < 1500000; n = n*2){
 	assert((n/p)%2 == 0);
 	//Creating a 3d matrix to hold the many M(2x2) matrixies
 	//n x 2 x 2
@@ -325,13 +326,13 @@ int main( int argc, char *argv[]){
 	//Printing time data
 	if(rank == 0){
 		printf("The time for simulating when n = %d and p = %d is t = %lf\n", n, p, maxSimTime);
-		printf("The time for communication when n = %d and p = %d is t = %lf", n, p, maxCommTime);
+		printf("The time for communication when n = %d and p = %d is t = %lf\n", n, p, maxCommTime);
 	}
 
 
 
 
 
-
+}
 	MPI_Finalize();
 }
