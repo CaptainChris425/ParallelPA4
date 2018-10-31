@@ -30,7 +30,7 @@ int main( int argc, char *argv[]){
 	int P = atoi(argv[3]);
 	int X_0 = atoi(argv[4]);
 	int rank,p;
-	int n = 32;
+	int n = 1048576;
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &p);
@@ -325,7 +325,8 @@ int main( int argc, char *argv[]){
 	//Printing time data
 	if(rank == 0){
 		printf("The time for simulating when n = %d and p = %d is t = %lf\n", n, p, maxSimTime);
-		printf("The time for communication when n = %d and p = %d is t = %lf", n, p, maxCommTime);
+		printf("The time for communication when n = %d and p = %d is t = %lf\n", n, p, maxCommTime);
+		printf("The time for computation when n = %d and p = %d is t = %lf\n", n, p, maxSimTime-maxCommTime);
 	}
 
 
